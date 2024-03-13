@@ -2,6 +2,12 @@
   <img alt="ollama" height="200px" src="https://github.com/jmorganca/ollama/assets/3325447/0d0b44e2-8f4a-4e99-9b52-a5c1c741c8f7">
 </div>
 
+### This particular version
+
+This version is based on [this fork](https://github.com/waTeim/ollama/) from [this MR](https://github.com/ollama/ollama/pull/2264) with upstream commit merged.
+
+It allows detection of MIG devices correctly.
+
 # Ollama
 
 [![Discord](https://dcbadge.vercel.app/api/server/ollama?style=flat&compact=true)](https://discord.gg/ollama)
