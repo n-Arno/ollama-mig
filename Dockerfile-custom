@@ -1,10 +1,10 @@
 ARG CUDA_VERSION=12.3.2
-ARG OS_NAME=ubi8
 
-FROM nvidia/cuda:${CUDA_VERSION}-devel-${OS_NAME} AS cuda-build-amd64
+FROM nvidia/cuda:${CUDA_VERSION}-devel-ubi8 AS cuda-build-amd64
 COPY . /build
 WORKDIR /build
-RUN dnf install gcc-toolset-12 git cmake -y
+RUN dnf update -y && \
+    dnf install gcc-toolset-12 git cmake -y
 RUN mkdir -p /usr/local && \
     curl -s -L https://dl.google.com/go/go1.22.1.linux-amd64.tar.gz | tar xz -C /usr/local && \
     ln -s /usr/local/go/bin/go /usr/local/bin/go && \
@@ -14,7 +14,7 @@ ENV CGO_ENABLED 1
 RUN OLLAMA_SKIP_CPU_GENERATE=1 go generate ./...
 RUN go build
 
-FROM nvidia/cuda:${CUDA_VERSION}-runtime-${OS_NAME} AS cuda-runtime-amd64
+FROM registry.access.redhat.com/ubi8/ubi:latest AS runtime-amd64
 COPY --from=cuda-build-amd64 /build/ollama /bin/ollama
 EXPOSE 11434
 ENV OLLAMA_HOST 0.0.0.0
