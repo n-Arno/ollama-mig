@@ -1,4 +1,4 @@
-ARG CUDA_VERSION=12.3.2
+ARG CUDA_VERSION=12.2.2
 
 FROM nvidia/cuda:${CUDA_VERSION}-devel-ubi8 AS cuda-build-amd64
 COPY . /build
