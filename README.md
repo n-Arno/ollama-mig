@@ -6,7 +6,23 @@
 
 This version is based on [this fork](https://github.com/waTeim/ollama/) from [this MR](https://github.com/ollama/ollama/pull/2264) with upstream commit merged.
 
-It allows detection of MIG devices correctly.
+It allows detection of MIG devices correctly. 
+
+***THIS VERSION IS NO LONGER NECESSARY, MIG IS CORRECTLY DETECTED WITH LATEST VERSION OF [OLLAMA](https://github.com/ollama/ollama/pull/2264#issuecomment-2131311191)***
+
+```
+$ kubectl logs ollama-f495dbf5f-j8f7p
+Defaulted container "ollama" out of: ollama, pull-model (init)
+2024/06/13 11:04:11 routes.go:1011: INFO server config env="map[OLLAMA_DEBUG:false OLLAMA_FLASH_ATTENTION:false OLLAMA_HOST: OLLAMA_KEEP_ALIVE: OLLAMA_LLM_LIBRARY: OLLAMA_MAX_LOADED_MODELS:1 OLLAMA_MAX_QUEUE:512 OLLAMA_MAX_VRAM:0 OLLAMA_MODELS: OLLAMA_NOHISTORY:false OLLAMA_NOPRUNE:false OLLAMA_NUM_PARALLEL:1 OLLAMA_ORIGINS:[http://localhost https://localhost http://localhost:* https://localhost:* http://127.0.0.1 https://127.0.0.1 http://127.0.0.1:* https://127.0.0.1:* http://0.0.0.0 https://0.0.0.0 http://0.0.0.0:* https://0.0.0.0:* app://* file://* tauri://*] OLLAMA_RUNNERS_DIR: OLLAMA_TMPDIR:]"
+time=2024-06-13T11:04:11.975Z level=INFO source=images.go:740 msg="total blobs: 5"
+time=2024-06-13T11:04:11.975Z level=INFO source=images.go:747 msg="total unused blobs removed: 0"
+time=2024-06-13T11:04:11.975Z level=INFO source=routes.go:1057 msg="Listening on [::]:11434 (version 0.1.43)"
+time=2024-06-13T11:04:11.975Z level=INFO source=payload.go:30 msg="extracting embedded files" dir=/tmp/ollama2431210044/runners
+time=2024-06-13T11:04:14.103Z level=INFO source=payload.go:44 msg="Dynamic LLM libraries [cpu cpu_avx cpu_avx2 cuda_v11 rocm_v60002]"
+time=2024-06-13T11:04:14.422Z level=INFO source=types.go:71 msg="inference compute" id=GPU-f7e947b5-56d0-94d2-ede7-62f59f9d4ebb library=cuda compute=9.0 driver=12.4 name="NVIDIA H100 PCIe MIG 1g.10gb" total="9.8 GiB" available="9.7 GiB"
+[GIN] 2024/06/13 - 11:04:30 | 200 |       34.64µs |    100.64.11.73 | GET      "/"
+[GIN] 2024/06/13 - 11:04:38 | 200 |       19.53µs |    100.64.11.73 | GET      "/"
+```
 
 # Ollama
 
